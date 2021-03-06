@@ -61,7 +61,6 @@ class Login extends React.Component {
         axios
             .post(`${backendURL}/user/login`, data)
             .then((response) => {
-                console.log(response);
                 secureStorage.setItem(
                     "userImage",
                     JSON.stringify(response.data.result.images)
