@@ -76,6 +76,8 @@ const Exam = () => {
         secureStorage.setItem("notFocusedCount", String(notFocusedCount));
         secureStorage.removeItem("selectedQuiz");
         secureStorage.removeItem("faceWarnings");
+        secureStorage.removeItem("warningCount_answers");
+        secureStorage.removeItem("answers");
         his.replace("/");
     };
 

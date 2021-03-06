@@ -168,6 +168,23 @@ class Review extends Component {
                                     >
                                         Face warnings: {answer.faceWarnings}
                                     </Typography>
+                                    {exam.faceSwitchingLimit !== 0 &&
+                                        exam.tabSwitchingLimit !== 0 && (
+                                            <Typography
+                                                variant="subtitle2"
+                                                style={{ color: "red" }}
+                                            >
+                                                {(answer.faceWarnings >
+                                                    parseInt(
+                                                        exam.faceSwitchingLimit
+                                                    ) ||
+                                                    answer.tabSwitched >
+                                                        parseInt(
+                                                            exam.tabSwitchingLimit
+                                                        )) &&
+                                                    `You have exceeded the limit of tab switching (${exam.tabSwitchingLimit}) or face warnings (${exam.faceSwitchingLimit}). You will be regarded as fail`}
+                                            </Typography>
+                                        )}
                                 </CardContent>
                             </Card>
                             <Typography
