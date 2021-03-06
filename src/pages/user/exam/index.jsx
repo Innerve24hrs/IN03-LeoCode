@@ -90,7 +90,7 @@ const Exam = () => {
 
     return (
         <Paper className={Style.main_container}>
-            <Typography variant="h4">Title of Quiz</Typography>
+            <Typography variant="h4">{exam.title}</Typography>
             <Divider />
             {/* {console.log(isFocused)} */}
             <Paper variant="elevation" className={Style.components_container}>

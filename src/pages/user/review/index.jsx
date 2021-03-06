@@ -1,4 +1,11 @@
-import { Button, Divider, Grid, Typography } from "@material-ui/core";
+import {
+    Button,
+    CardContent,
+    Divider,
+    Card,
+    Grid,
+    Typography,
+} from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 import axios from "axios";
@@ -11,8 +18,10 @@ class Review extends Component {
         super(props);
         this.state = {
             questionAnswer: [],
+            exam: {},
             loading: true,
             marksObtained: 0,
+            totalMarks: 0,
         };
     }
     async componentDidMount() {
@@ -38,11 +47,17 @@ class Review extends Component {
                     marks += parseInt(mainQuestion.marks);
                 }
             });
-            // console.log(questionAnswer);
+            console.log(exam);
+            var totalMarks = 0;
+            for (var index in exam.Questions) {
+                totalMarks += parseInt(exam.Questions[index]["marks"]);
+            }
             this.setState({
+                exam,
                 questionAnswer,
                 marksObtained: marks,
                 loading: false,
+                totalMarks,
             });
         } catch (error) {
             console.log(error.message);
@@ -53,7 +68,13 @@ class Review extends Component {
     }
 
     render() {
-        const { questionAnswer, loading, marksObtained } = this.state;
+        const {
+            questionAnswer,
+            loading,
+            marksObtained,
+            exam,
+            totalMarks,
+        } = this.state;
         return (
             <div>
                 <div
@@ -104,7 +125,43 @@ class Review extends Component {
                             );
                         })
                     ) : (
-                        <div>
+                        <div style={{ margin: "0 1rem" }}>
+                            <Typography variant="h5">Details</Typography>
+                            <Divider />
+                            <Card
+                                variant="outlined"
+                                elevation={4}
+                                style={{ margin: "1rem auto" }}
+                            >
+                                <CardContent>
+                                    <Typography
+                                        variant="subtitle2"
+                                        color="textPrimary"
+                                    >
+                                        Title: {`${exam.title}`}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        color="textPrimary"
+                                    >
+                                        Subtitle: {`${exam.subTitle}`}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        color="textPrimary"
+                                    >
+                                        Marks Obtained:{" "}
+                                        {`${marksObtained}/${totalMarks}`}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                            <Typography
+                                variant="h5"
+                                style={{ marginTop: "2rem" }}
+                            >
+                                Questions & Answers:
+                            </Typography>
+                            <Divider />
                             {questionAnswer.map((item, index) => (
                                 <QuestionCard
                                     item={item}
