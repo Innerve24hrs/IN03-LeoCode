@@ -138,9 +138,11 @@ router.route("/download").get(async (req, res) => {
     let exam = await Exam.findById(id);
     exam = JSON.stringify(exam);
     exam = JSON.parse(exam);
-    console.log(exam);
-    let Questions = shuffle(exam.Questions);
-    exam["Questions"] = Questions;
+    // console.log(exam);
+    if (exam.random) {
+      let Questions = shuffle(exam.Questions);
+      exam["Questions"] = Questions;
+    }
     var data = encrypt(JSON.stringify(exam), exam.key);
     res.status(200).send(data);
   } catch (error) {
