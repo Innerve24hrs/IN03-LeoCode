@@ -4,6 +4,7 @@ const SecureStorage = require("secure-web-storage");
 var CryptoJS = require("crypto-js");
 
 module.exports = global.config = {
+    // backendURL: "https://rohitchaudhari.me/api/api",
     backendURL: "http://localhost:5000/api",
     secureStorage: new SecureStorage(localStorage, {
         hash: function hash(key) {

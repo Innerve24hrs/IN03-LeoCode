@@ -61,7 +61,6 @@ const ExamCard = ({ item, index, isadmin, setPasswordOpen, setExamid }) => {
         if (!arr) {
             return false;
         }
-        // arr = JSON.parse(arr);
         if (arr.find((it) => it === item._id)) {
             return true;
         }
@@ -243,7 +242,6 @@ const ExamCard = ({ item, index, isadmin, setPasswordOpen, setExamid }) => {
             <div className={classes.root}>
                 <Snackbar
                     open={infoOpen}
-                    //   autoHideDuration={3000}
                     onClose={handleInfoClose}
                     anchorOrigin={{ vertical, horizontal }}
                     key={vertical + horizontal}
@@ -314,7 +312,7 @@ const ExamCard = ({ item, index, isadmin, setPasswordOpen, setExamid }) => {
                 >
                     {!isadmin && (
                         <>
-                            {!reviewEnabled && (
+                            {!reviewEnabled ? (
                                 <>
                                     <Button
                                         color="primary"
@@ -365,19 +363,20 @@ const ExamCard = ({ item, index, isadmin, setPasswordOpen, setExamid }) => {
                                         Submit Answers
                                     </Button>
                                 </>
+                            ) : (
+                                <Button
+                                    color="secondary"
+                                    variant="contained"
+                                    size="small"
+                                    disabled={!reviewEnabled}
+                                    onClick={() => {
+                                        history.push(`/userReview/${item._id}`);
+                                    }}
+                                    startIcon={<SubmitIcon />}
+                                >
+                                    Check Review
+                                </Button>
                             )}
-                            <Button
-                                color="secondary"
-                                variant="contained"
-                                size="small"
-                                disabled={!reviewEnabled}
-                                onClick={() => {
-                                    history.push(`/userReview/${item._id}`);
-                                }}
-                                startIcon={<SubmitIcon />}
-                            >
-                                Check Review
-                            </Button>
                         </>
                     )}
                     {isadmin && (
