@@ -19,6 +19,7 @@ class Review extends Component {
         this.state = {
             questionAnswer: [],
             exam: {},
+            answer: {},
             loading: true,
             marksObtained: 0,
             totalMarks: 0,
@@ -47,13 +48,13 @@ class Review extends Component {
                     marks += parseInt(mainQuestion.marks);
                 }
             });
-            console.log(exam);
             var totalMarks = 0;
             for (var index in exam.Questions) {
                 totalMarks += parseInt(exam.Questions[index]["marks"]);
             }
             this.setState({
                 exam,
+                answer,
                 questionAnswer,
                 marksObtained: marks,
                 loading: false,
@@ -74,6 +75,7 @@ class Review extends Component {
             marksObtained,
             exam,
             totalMarks,
+            answer,
         } = this.state;
         return (
             <div>
@@ -152,6 +154,19 @@ class Review extends Component {
                                     >
                                         Marks Obtained:{" "}
                                         {`${marksObtained}/${totalMarks}`}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        color="textPrimary"
+                                    >
+                                        Tab switching count:{" "}
+                                        {answer.tabSwitched}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle2"
+                                        color="textPrimary"
+                                    >
+                                        Face warnings: {answer.faceWarnings}
                                     </Typography>
                                 </CardContent>
                             </Card>
