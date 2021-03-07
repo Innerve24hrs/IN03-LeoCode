@@ -1,4 +1,4 @@
-### LeoCode
+# LeoCode
 
 <h1 align="center">
   Offline Exam Portal
@@ -7,18 +7,13 @@
 A intituitive web app which allows students to attend the exam in completely offline environment.
 </h3>
 
-
-
-
-
 ## Table of Contents
 
-- <a href="#confused-problem-statement">Problem Statement</a>
-- <a href="#bulb-solution-proposed">Solution Proposed</a>
-- <a href="#sparkles-advantages">Advantages</a>
-- <a href="#cloud-deployment-instructions">Deployment Instructions</a>
-- <a href="#computer-tech-stack">Tech Stack</a>
-- <a href="#-team-members">Team Members</a>
+-   <a href="#confused-problem-statement">Problem Statement</a>
+-   <a href="#bulb-solution-proposed">Solution Proposed</a>
+-   <a href="#sparkles-advantages">Advantages</a>
+-   <a href="#computer-tech-stack">Tech Stack</a>
+-   <a href="#-team-members">Team Members</a>
 
 ## :confused: Problem Statement
 
@@ -34,97 +29,27 @@ The Admin / Examiner / Appropriate Authority will have the option to set the pap
 
 ## :sparkles: Advantages
 
-- Will even work in rural areas / areas with low internet / zero internet bandwidth.
-- Help in reducing the load on college server.
-- Security (as paper format will be encrypted and decrypted on individual devices).
-- Password of exam / Decryption key will be sent to each candidate over SMS as soon as admin creates an exam.
-- Facial and Tab Switching status of each candidate along final report of answers will be attached to answer sheet (offline) and sent to admin in presence of internet connectivity.
-- Candidate will be monitored the whole time during exam.
-- Admin will have extra privilege to set questions at individual level (as unique key will be associated with each candidate for decryption).
-- Exams at your home comfort.
-
-## :cloud: Deployment Instructions
-
-- **Prerequisites**:
-
-  - Ubuntu 18.04 > Server
-  - Nginx: [Installation instructions](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
-  - MongoDB: [Installation instruction](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-  - Node.js & npm: [Installation instructions](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
-
-- Clone the Project:\
-  `git clone https://github.com/chaudharirohit2810/Hacked.git`
-
-- Navigate to root project directory:\
-  `cd Hacked`
-
-### Backend
-
-- Install Dependencies required for backend:\
-  `cd backend && npm install`
-- Install Pm2:\
-  `sudo npm install pm2@latest -g`
-- Start the backend server:\
-  `pm2 start index.js --name hacked_backend`
-- Save PM2 Process list and corresponding environments:\
-  `pm2 save`
-- Navigate to nginx conf file:\
-  `cd /etc/nginx/sites-enabled`
-- Open default file as a root:\
-  `sudo vim default`
-- Copy following configuration in server block of default file:
-
-  ```
-  location /api/ {
-      proxy_pass http://localhost:5000/;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection 'upgrade'
-      proxy_set_header Host $host;
-      proxy_cache_bypass $http_upgrade;
-  }
-  ```
-
-### Frontend:
-
-- Install Dependencies required for backend (cd into root project folder):\
-  `npm install`
-- Open the config.js file in src folder:\
-  `cd src && vim config.js`
-- Change the backendURL to the url of Backend which is:\
-  `http://<ip_address>/api`
-- Navigate to client folder:\
-  `cd ..`
-- Build the react project:\
-  `npm run build`\
-  This will create a build folder in client directory. The app is ready to be deployed!
-- Navigate to nginx conf file:\
-  `cd /etc/nginx/sites-enabled`
-- Open default file as a root:\
-  `sudo vim default`
-- Copy following configuration in server block of default file:
-
-  ```
-    root <path_to_build_folder>;
-
-    index index.html index.htm;
-
-    location / {
-            try_files $uri $uri/ /index.html;
-    }
-  ```
+-   Will even work in rural areas / areas with low internet / zero internet bandwidth.
+-   Help in reducing the load on college server.
+-   Security (as paper format will be encrypted and decrypted on individual devices).
+-   Password of exam / Decryption key will be sent to each candidate over SMS as soon as admin creates an exam.
+-   Facial and Tab Switching status of each candidate along final report of answers will be attached to answer sheet (offline) and sent to admin in presence of internet connectivity.
+-   Candidate will be monitored the whole time during exam.
+-   Admin will have extra privilege to set questions at individual level (as unique key will be associated with each candidate for decryption).
+-   Exams at your home comfort.
 
 ## :computer: Tech Stack
 
-- MERN Stack
-  - MongoDB
-  - Express
-  - React.js
-  - Node
-- Progressive Web application
-- Material UI
+-   MERN Stack
+    -   MongoDB
+    -   Express
+    -   React.js
+    -   Node
+-   Progressive Web application
+-   Material UI
 
 ## 👦🏽 Team Members:
 
-- [Rohit Chaudhari](https://github.com/chaudharirohit2810)
-- [Viraj Jadhav](https://github.com/VirajJadhav)
-- [Prajwal Adsul](https://github.com/PrajwalAdsul)
+-   [Rohit Chaudhari](https://github.com/chaudharirohit2810)
+-   [Viraj Jadhav](https://github.com/VirajJadhav)
+-   [Prajwal Adsul](https://github.com/PrajwalAdsul)
